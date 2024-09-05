@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4  # 최신 버전 사용
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4  # 최신 버전 사용
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -24,6 +24,8 @@ jobs:
       - name: Generate Response
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub에서 제공하는 기본 토큰
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           python scripts/respond_to_issue.py
