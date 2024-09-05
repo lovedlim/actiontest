@@ -37,7 +37,7 @@ def get_chatgpt_response(prompt):
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=150
+            max_tokens=2048
         )
         return response.choices[0].message['content'].strip()
     except Exception as e:
