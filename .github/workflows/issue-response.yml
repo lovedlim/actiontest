@@ -16,10 +16,16 @@ jobs:
         with:
           python-version: '3.x'
 
+      # - name: Install dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install openai requests
+      
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install openai requests
+          pip install openai==0.28.0 requests  # 특정 버전으로 설치
+
 
       - name: Generate Response
         env:
