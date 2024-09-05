@@ -21,12 +21,15 @@ def get_issue_body():
 
 # ChatGPT API 호출
 def get_chatgpt_response(prompt):
-    response = openai.Completion.create(
-      model="text-davinci-003",
-      prompt=prompt,
+    response = openai.ChatCompletion.create(
+      model="gpt-3.5-turbo",  # 최신 모델명으로 업데이트
+      messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": prompt}
+      ],
       max_tokens=150
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message['content'].strip()
 
 # 이슈에 댓글 추가
 def comment_on_issue(comment):
