@@ -31,4 +31,4 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          python respond_to_issue.py
+          python .github/workflows/respond_to_issue.py
