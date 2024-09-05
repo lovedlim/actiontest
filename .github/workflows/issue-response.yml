@@ -9,15 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4  # 최신 버전으로 업데이트
-
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v3  # Node.js 20 설정
-        with:
-          node-version: '20'
+        uses: actions/checkout@v4  # 최신 버전 사용
 
       - name: Set up Python
-        uses: actions/setup-python@v4  # 최신 버전으로 업데이트
+        uses: actions/setup-python@v4  # 최신 버전 사용
         with:
           python-version: '3.x'
 
@@ -29,5 +24,6 @@ jobs:
       - name: Generate Response
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/respond_to_issue.py
