@@ -40,8 +40,11 @@ def comment_on_issue(comment):
 
 def main():
     issue_body = get_issue_body()
-    response = get_chatgpt_response(issue_body)
-    comment_on_issue(response)
+    if issue_body:  # 이슈 내용이 있을 때만 응답 생성
+        response = get_chatgpt_response(issue_body)
+        comment_on_issue(response)
+    else:
+        print("No issue body found.")
 
 if __name__ == "__main__":
     main()
